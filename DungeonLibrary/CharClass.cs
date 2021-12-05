@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace DungeonLibrary
 {
-    public class Class1
+    public enum CharClass
     {
+        Barbarian,
+        Fighter,
+        Paladin,
+        Cleric,
+        Ranger
     }
 }
