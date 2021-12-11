@@ -44,6 +44,7 @@
     <Compile Include="Armor.cs" />
     <Compile Include="Character.cs" />
     <Compile Include="CharClass.cs" />
+    <Compile Include="Combat.cs" />
     <Compile Include="Monster.cs" />
     <Compile Include="PlayerChar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
