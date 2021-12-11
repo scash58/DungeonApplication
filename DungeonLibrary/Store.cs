@@ -68,7 +68,7 @@ namespace DungeonLibrary
                 i++;
             }//end foreach
 
-            Console.WriteLine($"\n***** Weapons *****\n" +
+            Console.WriteLine($"\n************ Weapons ************\n" +
                 $"{weaponStock}\n");
 
             Console.WriteLine($"You have {gold} gold to buy a weapon for you charater.");
@@ -79,6 +79,7 @@ namespace DungeonLibrary
             {
                 Console.Write("What number weapon do you want? ");
                 weaponSelection = Convert.ToInt32(Console.ReadLine());
+                Console.Clear();
 
                 returnWeapon = WeaponStock[weaponSelection - 1];
 
@@ -88,7 +89,7 @@ namespace DungeonLibrary
                 }
                 else
                 {
-                    Console.WriteLine("The weapon cost too much. Please choose one you can afford.");
+                    Console.WriteLine("The weapon cost too much. Please choose one you can afford.\n");
                 }
 
             }
@@ -109,7 +110,7 @@ namespace DungeonLibrary
                 i++;
             }
 
-            Console.WriteLine($"***** Armor *****\n" +
+            Console.WriteLine($"************ Armor ************\n" +
                 $"{armorStock}\n");
 
             Console.WriteLine($"You have {gold} gold to buy armor for you charater.");
@@ -118,6 +119,7 @@ namespace DungeonLibrary
             {
                 Console.Write("What number armor do you want? ");
                 int armorSelection = Convert.ToInt32(Console.ReadLine());
+                Console.Clear();
 
                 returnArmor = ArmorStock[armorSelection - 1];
 
@@ -128,7 +130,7 @@ namespace DungeonLibrary
                 }
                 else
                 {
-                    Console.WriteLine("The armor cost too much. Please choose one you can afford.");
+                    Console.WriteLine("The armor cost too much. Please choose one you can afford.\n");
                 }
 
             }

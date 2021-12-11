@@ -13,12 +13,14 @@ namespace DungeonApplication
     {
         static void Main(string[] args)
         {
+            
             List<Weapon> weaponStock = new List<Weapon>();
             List<Armor> armorStock = new List<Armor>();
             Weapon equippedWeapon = new Weapon();
             Armor equippedArmor = new Armor();
             PlayerChar defaultPlayer = new PlayerChar();
 
+            //Weapon declaration to be added to the store
             Weapon shortSword = new Weapon(1, 6, "Short Sword", 10, false, 20);
             Weapon longSword = new Weapon(1, 8, "Long Sword", 10, false, 30);
             Weapon greatSword = new Weapon(2, 12, "Great Sword", 10, true, 140);
@@ -31,6 +33,7 @@ namespace DungeonApplication
             weaponStock.Add(battleAxe);
             weaponStock.Add(greatAxe);
 
+            //Armor declaration to be added to the store
             Armor studdedLeather = new Armor("Studded Leather", 3, 3, 50);
             Armor chainMail = new Armor("Chain Mail", 5, 5, 100);
             Armor halfPlate = new Armor("Half-Plate", 7, 7, 200);
@@ -41,6 +44,7 @@ namespace DungeonApplication
             armorStock.Add(halfPlate);
             armorStock.Add(fullPlate);
 
+            //Store declaration with it weaponStock and armorStock
             Store store = new Store(weaponStock, armorStock);
             string title = "Dungeon Crawler";
 
@@ -73,12 +77,10 @@ namespace DungeonApplication
 
             Console.WriteLine(player.ToString());
 
-            //TODO 02 Create a player class maybe player enemy
+            
             //TODO 03 Create monster class and subclasses
-            //TODO 04 Create weapon class, subclasses
-            //TODO 05 Create armor class, subclasses
-            //TODO 06 Create a store
-            //TODO 07 Create character archtypes: warrior barbarian knight
+            
+            
             //TODO 08 Create a Dungeon room w/monster, loot, ect.
             //TODO 09 Make interface for the Dungeon
             //TODO 10 Do combat

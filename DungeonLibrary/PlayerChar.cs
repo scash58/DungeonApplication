@@ -208,16 +208,18 @@ namespace DungeonLibrary
 
             string choosenRace = "";
 
-            Console.WriteLine($"1)Human:\t\tMax Life 5\tHit Chance 5\n" +
+            Console.WriteLine($"**************** PLAYER RACE ****************\n" +
+                $"1)Human:\t\tMax Life 5\tHit Chance 5\n" +
                 $"2)Halfling:\t\tHit Chance 5\tBlock 5\n" +
                 $"3)Gnome:\t\tBlock 10\n" +
                 $"4)Half-Orc:\t\tMax Life 10\n" +
                 $"5)Dwarf:\t\tMax Life 5\tBlock 5\n" +
                 $"6)Half-Elf:\t\tHit Chance 7\tMax Life 3\n" +
-                $"7)Elf:\t\tHit Chance 10\n");
+                $"7)Elf:\t\t\tHit Chance 10\n");
 
             Console.Write("Which Charater Race would you like to play?: ");
             choosenRace = Console.ReadLine();
+            Console.WriteLine();
 
             switch (choosenRace)
             {
@@ -254,7 +256,8 @@ namespace DungeonLibrary
 
             string choosenClass = "";
 
-            Console.WriteLine($"1)Barbarian:\t\tMax Life 10\n" +
+            Console.WriteLine($"**************** PLAYER CLASS ****************\n" +
+                $"1)Barbarian:\t\tMax Life 10\n" +
                 $"2)Cleric:\t\tBlock 10\n" +
                 $"3)Fighter:\t\tMax Life 5\tHit Chance 5\n" +
                 $"4)Paladin:\t\tHit Chance 5\tBlock 5\n" +
@@ -262,6 +265,7 @@ namespace DungeonLibrary
 
             Console.Write("Which Charater Race would you like to play?: ");
             choosenClass = Console.ReadLine();
+            Console.WriteLine();
 
             switch (choosenClass)
             {
