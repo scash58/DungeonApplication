@@ -28,7 +28,7 @@ namespace DungeonMonster
             Block = 20;
             MinDamage = 2;
             MonsterScore = 3;
-            Description = ".";
+            Description = "That bear is big, not huge.";
             GoldReward = 10;
             IsHuge = false;
         }//end default ctor
