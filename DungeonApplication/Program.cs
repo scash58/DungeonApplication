@@ -87,12 +87,14 @@ namespace DungeonApplication
 
             do //This loop is for the whole charater instance
             {
-                player.Life = player.MaxLife; //makes sure player health is full prior to entering a new dungeon
+                
 
                 bool reload = false;
 
                 do //This loop is for the dungeon instance
-                {                    
+                {      
+                    
+                    player.Life = player.MaxLife; //makes sure player health is full prior to entering a new dungeon
 
                     for (int i = 1; i <= 5; i++) //This is a five room dungeon with a bose fight
                     {
@@ -228,9 +230,9 @@ X)Exit
                     if (exit == true)
                     {
                         newDungeon = true;
-                    }                    
+                    }
 
-                    do // Loop for going to the store, starting a new dungeon, checking player info, or exit the game
+                    while (!newDungeon) // Loop for going to the store, starting a new dungeon, checking player info, or exit the game
                     {
 
                         Console.WriteLine(@"
@@ -290,7 +292,7 @@ X)Exit
                                 break;
                         }
 
-                    } while (!newDungeon);
+                    } 
 
 
                 } while (!reload && !exit);
