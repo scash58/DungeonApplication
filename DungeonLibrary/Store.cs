@@ -55,9 +55,9 @@ namespace DungeonLibrary
 
         }
 
-        public Weapon BuyWeapon( int gold )
+        public Weapon BuyWeapon( int gold, Weapon returnWeapon )
         {
-            Weapon returnWeapon = new Weapon();
+            //Weapon returnWeapon = new Weapon();
             string weaponStock = "";
             int weaponSelection;
             int i = 1;
@@ -71,20 +71,27 @@ namespace DungeonLibrary
             Console.WriteLine($"\n************ Weapons ************\n" +
                 $"{weaponStock}\n");
 
-            Console.WriteLine($"You have {gold} gold to buy a weapon for you charater.");
+            Console.WriteLine($"You have {gold} gold to buy a weapon for you character.");
 
             bool weaponNotEquiped = true;
 
             while (weaponNotEquiped)
             {
+                Console.WriteLine("If you do not want a new weapon enter 0.");
                 Console.Write("What number weapon do you want? ");
                 weaponSelection = Convert.ToInt32(Console.ReadLine());
                 Console.Clear();
+
+                if (weaponSelection == 0)
+                {
+                    return returnWeapon;
+                }
 
                 returnWeapon = WeaponStock[weaponSelection - 1];
 
                 if (gold > returnWeapon.Cost)
                 {
+
                     weaponNotEquiped = false;
                 }
                 else
@@ -97,10 +104,10 @@ namespace DungeonLibrary
             return returnWeapon;
         }
 
-        public Armor BuyArmor( int gold)
+        public Armor BuyArmor( int gold, Armor returnArmor )
         {
             bool armorNotEquiped = true;
-            Armor returnArmor = new Armor();
+            //Armor returnArmor = new Armor();
             string armorStock = "";
             int i = 1;
 
@@ -113,13 +120,20 @@ namespace DungeonLibrary
             Console.WriteLine($"************ Armor ************\n" +
                 $"{armorStock}\n");
 
-            Console.WriteLine($"You have {gold} gold to buy armor for you charater.");
+            Console.WriteLine($"You have {gold} gold to buy armor for you character.");
 
             while (armorNotEquiped)
             {
+                Console.WriteLine("If you do not want a new armor enter 0.");
                 Console.Write("What number armor do you want? ");
                 int armorSelection = Convert.ToInt32(Console.ReadLine());
                 Console.Clear();
+
+                if (armorSelection == 0)
+                {
+                    
+                    return returnArmor;
+                }
 
                 returnArmor = ArmorStock[armorSelection - 1];
 

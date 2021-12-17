@@ -19,6 +19,7 @@ namespace DungeonApplication
             Armor equippedArmor = new Armor();
             PlayerChar defaultPlayer = new PlayerChar();
             int score = 0;
+            int monstersKO = 0;
 
             //Weapon declaration to be added to the store
             Weapon shortSword = new Weapon(1, 6, "Short Sword", 10, false, 20);
@@ -64,9 +65,9 @@ namespace DungeonApplication
 
             int gold = 200;
 
-            equippedWeapon = store.BuyWeapon(gold);
+            equippedWeapon = store.BuyWeapon(gold, equippedWeapon);
             gold -= equippedWeapon.Cost;
-            equippedArmor = store.BuyArmor(gold);
+            equippedArmor = store.BuyArmor(gold, equippedArmor);
             gold -= equippedArmor.Cost;
 
 
@@ -77,25 +78,9 @@ namespace DungeonApplication
 
             Console.WriteLine(player.ToString());
 
-            Wolf wolf1 = new Wolf();//uses the default ctor, creates a young wolf
+            
 
-            Wolf wolf2 = new Wolf("Mackenzie Valley Wolf", 30, 30, 50, 20, 2, 10, 5,
-                "That is one huge wolf! He looks very angry", 15, true);
-
-            Bat bat1 = new Bat();//uses the default ctor, creates a small bat
-
-            Bat bat2 = new Bat("Vampire Bat", 30, 30, 50, 20, 2, 10, 5,
-                "That is one big bat.", 10, true);
-
-            Bear bear1 = new Bear();//uses the default ctor, creates a black bear
-
-            Bear bear2 = new Bear("Grizzly Bear", 30, 30, 50, 20, 2, 10, 5,
-                "That is a big bear!", 20, true);
-
-            Monster[] baseMonsters = { wolf1, wolf1, bat1, bat1, bear1, bear1 };
-            Monster[] bossMonsters = { wolf2, bat2, bear2 };
-
-            Monster currentMonster = new Monster();
+            
 
 
             bool exit = false;
@@ -107,12 +92,32 @@ namespace DungeonApplication
                 bool reload = false;
 
                 do //This loop is for the dungeon instance
-                {
+                {                    
 
                     for (int i = 1; i <= 5; i++) //This is a five room dungeon with a bose fight
                     {
 
+                        //The monster lists have to be in the dungeon instance or they will have negative
+                        //life if they are killed 
+                        Wolf wolf1 = new Wolf();//uses the default ctor, creates a young wolf
 
+                        Wolf wolf2 = new Wolf("Mackenzie Valley Wolf", 30, 30, 50, 20, 2, 10, 5,
+                            "That is one huge wolf! He looks very angry", 15, true);
+
+                        Bat bat1 = new Bat();//uses the default ctor, creates a small bat
+
+                        Bat bat2 = new Bat("Vampire Bat", 30, 30, 50, 20, 2, 10, 5,
+                            "That is one big bat.", 10, true);
+
+                        Bear bear1 = new Bear();//uses the default ctor, creates a black bear
+
+                        Bear bear2 = new Bear("Grizzly Bear", 30, 30, 50, 20, 2, 10, 5,
+                            "That is a big bear!", 20, true);
+
+                        Monster[] baseMonsters = { wolf1, wolf1, bat1, bat1, bear1, bear1 }; 
+                        Monster[] bossMonsters = { wolf2, bat2, bear2 };
+                                                                         
+                        Monster currentMonster = new Monster();
 
                         if (i == 5)
                         {
@@ -133,8 +138,6 @@ namespace DungeonApplication
 
                         do //for monster fight
                         {
-
-
 
                             Console.WriteLine(@"
 Please choose an action:
@@ -166,6 +169,7 @@ X)Exit
                                         Console.ResetColor();
                                         monsterDied = true;
                                         score += currentMonster.MonsterScore;
+                                        monstersKO++;
                                         player.Gold += currentMonster.GoldReward;
                                     }
                                     break;
@@ -226,10 +230,8 @@ X)Exit
                         newDungeon = true;
                     }                    
 
-                    do
+                    do // Loop for going to the store, starting a new dungeon, checking player info, or exit the game
                     {
-
-
 
                         Console.WriteLine(@"
 Please choose an action:
@@ -244,7 +246,7 @@ X)Exit
                         {
                             case "S":
                                 Console.WriteLine("If you buy a new piece of equipment we buy any old equipment for one quarter of it original cost.");
-                                equippedWeapon = store.BuyWeapon(player.Gold);
+                                equippedWeapon = store.BuyWeapon(player.Gold, player.EquippedWeapon);
                                 if (equippedWeapon != player.EquippedWeapon) //test if the player bought a new weapon
                                 {
                                     player.Gold += (int)(player.EquippedWeapon.Cost * .25); //The player sells their original weapon
@@ -252,7 +254,7 @@ X)Exit
                                     player.EquippedWeapon = equippedWeapon; //Equips the new weapon
                                 }
                                 
-                                equippedArmor = store.BuyArmor(player.Gold);
+                                equippedArmor = store.BuyArmor(player.Gold, player.EquippedArmor);
                                 if (equippedArmor != player.EquippedArmor) //Test if the player bought a new armor
                                 {
                                     player.Gold += (int)(player.EquippedArmor.Cost * .25); //The player sells their orginal Armor
@@ -270,7 +272,8 @@ X)Exit
                                 Console.WriteLine("Player Info:");
                                 //Display Player info
                                 Console.WriteLine(player);
-                                Console.WriteLine("Monsters slain: " + score);
+                                Console.WriteLine("Player score:   " + score);
+                                Console.WriteLine("Monsters slain: " + monstersKO);
                                 break;
 
                             case "X":
@@ -290,7 +293,6 @@ X)Exit
                     } while (!newDungeon);
 
 
-
                 } while (!reload && !exit);
                 //While reload and(&&) exits is BOTH NOT TRUE, keep looping
                 //If reload is true, leave the inner loop. If exit is true, leave both loops.
@@ -298,9 +300,8 @@ X)Exit
             } while (!exit);//While exit is NOT TRUE, keep looping
 
             Console.WriteLine($"" +
-                $"You defeated {score:n0} monster{(score == 1 ? "." : "s")}");
+                $"You defeated {monstersKO:n0} monster{(monstersKO == 1 ? "." : "s")}");
 
-
-        }
-    }
-}
+        }//End Main()
+    }//End Class
+}//End Namespace
