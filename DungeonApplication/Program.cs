@@ -77,17 +77,11 @@ namespace DungeonApplication
             Console.Clear();
 
             Console.WriteLine(player.ToString());
-
             
-
-            
-
-
             bool exit = false;
 
             do //This loop is for the whole charater instance
-            {
-                
+            {                
 
                 bool reload = false;
 
@@ -190,7 +184,8 @@ X)Exit
                                     Console.WriteLine("Player Info:");
                                     //Display Player info
                                     Console.WriteLine(player);
-                                    Console.WriteLine("Monsters slain: " + score);
+                                    Console.WriteLine("Player score:   " + score);
+                                    Console.WriteLine("Monsters slain: " + monstersKO);
                                     break;
 
                                 case "M":
@@ -203,7 +198,7 @@ X)Exit
                                 case "X":
                                 case "E":
                                 case "Escape":
-                                    Console.WriteLine("No one likes a quitter....");
+                                    Console.WriteLine("Thou quest shall stay unfinished....");
                                     i = 6;
                                     monsterDied = true; //monster did not die but need to escape fight loop
                                     reload = true; // need to escape dungeon loop
@@ -218,14 +213,14 @@ X)Exit
                             //Check Player Life
                             if (player.Life <= 0)
                             {
-                                Console.WriteLine("Dude... you died!\a");
+                                Console.WriteLine("Thou hast died!\a");
                                 exit = true;
                             }//end if player is dead!
 
                         } while (!monsterDied);
                     }
 
-                    bool newDungeon = false;
+                    bool newDungeon = false; 
 
                     if (exit == true)
                     {
